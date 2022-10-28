@@ -18,7 +18,7 @@ def valid?(password)
 end
 =end
 
-# First Refactor
+# Second Refactor
 
 
 
@@ -27,22 +27,17 @@ def sufficient_length?(password)
     return password.length > 7
 end
 
+required_chars = /[!@$%&]/
 
 def special_chars_included?(password)
-    if password.include?("!")
-      return true
-    elsif password.include?("@")
-      return true
-    elsif password.include?("$")
-      return true
-    elsif password.include?("%")
-      return true
-    elsif password.include?("&")
-      return true
-    else
-      return false
-    end
+  # `/[!@$%&]/` is the regex
+  # it matches (detects) any of the 5 special characters
+  if password =~ required_chars
+    return true
+  else
+    return false
   end
+end
 
   def valid?(password)
     if sufficient_length?(password) && special_chars_included?(password)
